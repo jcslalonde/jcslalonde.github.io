@@ -86,6 +86,15 @@ section{padding:56px 0;border-bottom:1px solid var(--hairline)}
 .teach ul{margin:8px 0 0;padding-left:18px;font-size:15.5px}
 .teach ul li{padding:3px 0}
 
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.project{display:flex;flex-direction:column;background:var(--surface-alt);padding:20px 22px;border-radius:2px;border-top:4px solid var(--brand)}
+.project:nth-child(3n+2){border-top-color:var(--accent)}
+.project:nth-child(3n+3){border-top-color:var(--gold)}
+.project p{margin:8px 0 0;font-size:15.5px}
+.project .tags{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:10px}
+.project .plinks{margin-top:auto;padding-top:14px;display:flex;gap:14px;flex-wrap:wrap;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.project .status{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+
 .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .skill{border-top:4px solid var(--ink);padding-top:12px}
 .skill:nth-child(odd){border-top-color:var(--brand)}
@@ -104,7 +113,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media (max-width:760px){
   .hero .wrap{padding-top:36px;padding-bottom:36px}
-  .areas,.contact,.skills{grid-template-columns:1fr}
+  .areas,.contact,.skills,.projects{grid-template-columns:1fr}
   .teach>li{grid-template-columns:1fr;gap:2px}
   .contact dl{grid-template-columns:90px 1fr}
   nav li a{padding:10px 8px;font-size:12px}
@@ -119,6 +128,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <a class="name" href="#top"><span class="sq" aria-hidden="true"></span>Julian Skosey-LaLonde</a>
     <ul>
       <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -150,6 +160,38 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="area"><h3>Optimization and simulation</h3><p>Graduate study in business analytics, with a data & methods concentration, aimed at applications to freight and transportation problems.</p></div>
       <div class="area"><h3>Freight and rail</h3><p>Career goal: a role in the freight and transportation industry, specifically rail.</p></div>
       <div class="area"><h3>Leadership and teamwork</h3><p>Years of coaching and recruiting, with a focus on the team win and close working relationships.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><h2>Projects</h2></div>
+    <div class="projects">
+
+      <!-- Project 1 -->
+      <div class="project">
+        <div class="status">Live app</div>
+        <h3>D3 Baseball Simulator</h3>
+        <p>A Monte Carlo simulator for NCAA Division III baseball. Users select a pitcher to face an oppsing team's lineup, plays 40 games, and displays an animated game replay, reports hitter and pitcher averages with confidence intervals, distribution charts, and offers an Excel export.</p>
+        <div class="tags">Python · Streamlit · Web Scraping</div>
+        <div class="plinks">
+          <a href="https://d3-with-lalonde.streamlit.app">Try the app</a>
+          <a href="https://github.com/jcslalonde/D3-Addict-Analytics">Code</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project">
+        <div class="status">Class project · BA 780</div>
+        <h3>Intermodal Route Optimization for Hurricane Relief</h3>
+        <p>An optimization model leveraging Python's NetworkX library, for transporting relief supplies to U.S. cities hit by hurricanes. It simulates likely storm paths from NOAA hurricane tracks back to 1851 and climate data, then routes supplies by rail from large cities to the nearest intermodal facility outside the storm's radius (as to account for time to inspect those tracks), with trucks covering the final miles.</p>
+        <div class="tags">Python · Jupyter · Optimization · Simulation</div>
+        <div class="plinks">
+          <a href="https://github.com/jcslalonde/BA-780-A01-Project---Intermodal-Route-Optimization-for-Hurricane-Relief">Code</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
