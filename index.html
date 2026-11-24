@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Julian Skosey-LaLonde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto+Slab:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: single column profile, sticky nav, BU Red top rule, rail-network hero. Palette and type roles from the BU COM brand guide (Klinic Slab and Brandon substituted with Roboto Slab and Montserrat). */
+:root{
+  --surface:#ffffff; --surface-alt:#f4f4f4; --ink:#000000; --muted:#555555; --hairline:#cfcfcf;
+  --brand:#cc0000; --accent:#33bbba; --gold:#ffc72c; --block-deep:#000000; --block-red:#cc0000;
+  --tint:#fbe3e3; --on-block:#ffffff;
+  --display:"Brandon Grotesque","Brandon Text",Montserrat,"Helvetica Neue",Arial,sans-serif;
+  --body:"Klinic Slab","Roboto Slab",Rockwell,Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --surface:#000000; --surface-alt:#1c1c1d; --ink:#ffffff; --muted:#b8b8b8; --hairline:#444546;
+    --brand:#ff5c5c; --block-deep:#3a3b3d; --tint:#3d1b1b;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --surface:#000000; --surface-alt:#1c1c1d; --ink:#ffffff; --muted:#b8b8b8; --hairline:#444546;
+  --brand:#ff5c5c; --block-deep:#3a3b3d; --tint:#3d1b1b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;border-top:6px solid var(--block-red)}
+a{color:var(--brand);text-underline-offset:3px}
+a:hover{background:var(--brand);color:var(--on-block);text-decoration:none}
+a:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h2{font-size:32px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+h3{font-size:18px;line-height:1.3;font-weight:700}
+h4{font-family:var(--display);font-size:13px;line-height:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:32px 0 4px}
+.label{font-family:var(--display);font-size:13px;line-height:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.caption{font-size:14px;line-height:20px;color:var(--muted)}
+
+nav{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--hairline)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:48px;flex-wrap:wrap}
+nav .name{font-family:var(--display);font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center}
+nav .name:hover{background:none;color:var(--ink)}
+nav .sq{display:inline-block;width:30px;height:10px;margin-right:12px;background:radial-gradient(circle at 5px 50%,var(--block-red) 4px,transparent 4.5px),radial-gradient(circle at 15px 50%,var(--accent) 4px,transparent 4.5px),radial-gradient(circle at 25px 50%,var(--gold) 4px,transparent 4.5px),linear-gradient(var(--muted),var(--muted)) center/100% 2px no-repeat}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;flex-wrap:wrap}
+nav li a{display:block;padding:12px 10px;color:var(--ink);text-decoration:none;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+nav li a:hover{background:var(--block-red);color:var(--on-block)}
+
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairline)}
+#net{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.14),rgba(0,0,0,.4) 55%,#000 88%);mask-image:linear-gradient(to right,rgba(0,0,0,.14),rgba(0,0,0,.4) 55%,#000 88%)}
+.hero .label,.hero h1,.hero .role,.hero p.bio{text-shadow:0 0 4px var(--surface),0 0 10px var(--surface),0 0 18px var(--surface),0 0 28px var(--surface)}
+.hero .wrap{position:relative;z-index:1;padding-top:56px;padding-bottom:56px}
+.hero h1{font-size:clamp(40px,7.4vw,68px);line-height:1;font-weight:700;letter-spacing:-.02em;margin:8px 0 16px}
+.hero .role{font-size:21px;line-height:1.35;margin:0 0 20px;max-width:36ch}
+.hero p.bio{max-width:62ch;margin:0 0 24px}
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 16px;background:var(--block-deep);color:var(--on-block);font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.btn:hover{background:var(--block-red);color:var(--on-block)}
+.btn.alt{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--surface)}
+
+section{padding:56px 0;border-bottom:1px solid var(--hairline)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
+.sec-head::before{content:"";flex:none;align-self:center;width:44px;height:12px;margin-right:4px;background:radial-gradient(circle at 6px 50%,var(--block-red) 5px,transparent 5.5px),radial-gradient(circle at 22px 50%,var(--accent) 5px,transparent 5.5px),radial-gradient(circle at 38px 50%,var(--gold) 5px,transparent 5.5px),linear-gradient(var(--muted),var(--muted)) center/100% 2px no-repeat}
+.lede{max-width:70ch;margin:0 0 24px}
+
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.area{background:var(--surface-alt);padding:20px 22px;border-radius:2px;border-top:4px solid var(--brand)}
+.area:nth-child(2){border-top-color:var(--accent)}
+.area:nth-child(3){border-top-color:var(--gold)}
+.area p{margin:6px 0 0;font-size:16px}
+
+.teach{list-style:none;margin:0;padding:0}
+.teach>li{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--hairline)}
+.teach>li:last-child{border-bottom:1px solid var(--hairline)}
+.teach .when{font-family:var(--mono);font-size:14px;color:var(--muted);padding-top:3px}
+.teach .role{font-family:var(--display);font-weight:700}
+.teach .note{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+.teach ul{margin:8px 0 0;padding-left:18px;font-size:15.5px}
+.teach ul li{padding:3px 0}
+
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skill{border-top:4px solid var(--ink);padding-top:12px}
+.skill:nth-child(odd){border-top-color:var(--brand)}
+.skill p{margin:6px 0 0;font-size:16px}
+
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.contact dl{margin:0;display:grid;grid-template-columns:110px 1fr;gap:10px 16px}
+.contact dt{font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.contact dd{margin:0;word-break:break-word}
+.callout{background:var(--block-deep);color:var(--on-block);padding:28px;border-radius:2px;border-left:6px solid var(--brand)}
+.callout h3{font-size:22px;margin-bottom:8px}
+.callout p{margin:0;opacity:.92}
+
+footer{background:var(--surface-alt);padding:28px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .hero .wrap{padding-top:36px;padding-bottom:36px}
+  .areas,.contact,.skills{grid-template-columns:1fr}
+  .teach>li{grid-template-columns:1fr;gap:2px}
+  .contact dl{grid-template-columns:90px 1fr}
+  nav li a{padding:10px 8px;font-size:12px}
+  section{padding:40px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav aria-label="Primary">
+  <div class="wrap">
+    <a class="name" href="#top"><span class="sq" aria-hidden="true"></span>Julian Skosey-LaLonde</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="label">MSBA Candidate '27, Boston University</div>
+    <h1>Julian Skosey-LaLonde</h1>
+    <p class="role">Aspiring operations research and optimization analyst in freight and transportation.</p>
+    <p class="bio">I am a Master of Science in Business Analytics student at Boston University Questrom, passionate about optimization and simulation in freight and transportation. As a former NCAA and Mid-America League pitching coach, I used data to shape team metrics, strategy and training programs.</p>
+    <div class="links">
+      <a class="btn" href="#experience">Experience</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/julian-lalonde">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2>About</h2></div>
+    <p class="lede">After graduation I want to add value to an organization in the freight and transportation industry, specifically rail. My background leading in athletics, paired with my academic work in business analytics and applied statistics, prepares me for dedicated, cross-functional work. Teammates and superiors can expect discipline, consistency and deliberativeness.</p>
+    <div class="areas">
+      <div class="area"><h3>Optimization and simulation</h3><p>Graduate study in business analytics, aimed at freight and transportation problems.</p></div>
+      <div class="area"><h3>Freight and rail</h3><p>Career goal: a role in the freight and transportation industry, specifically rail.</p></div>
+      <div class="area"><h3>Leadership and teamwork</h3><p>Years of coaching and recruiting, with a focus on the team win and close working relationships.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><h2>Experience</h2></div>
+    <ul class="teach">
+      <li><span class="when">Jun 2025 to Jun 2026</span><div><span class="role">Pitching Coach, Graduate Assistant</span><span class="note">Wisconsin Lutheran College, Milwaukee, WI</span>
+        <ul>
+          <li>Created individualized off-season throwing programs for pitchers. One of the top arms improved from a 10.13 ERA the previous year to 4.93, and team average velocity increased.</li>
+          <li>Developed arm care and throwing mechanics training programs. Pitchers bounced back between outings sooner, and the team walk rate fell from 15% to 11.4%.</li>
+          <li>Assistant recruiting coordinator for the incoming 2026 players. Recruited 7, 2 of whom are ranked by Wisconsin Prep Baseball Report, matching the program's total ranked recruits.</li>
+          <li>Conducted statistical analysis of fall and early winter pitching and swing decision data.</li>
+        </ul></div></li>
+      <li><span class="when">Aug 2023 to May 2025</span><div><span class="role">Student Assistant Baseball Coach</span><span class="note">Cornell College, Mt. Vernon, IA</span>
+        <ul>
+          <li>Reached the program's 6th-ever MWC playoff appearance in 2024, the first in 5 years, and the first consecutive winning seasons in 21 years.</li>
+          <li>Led the outfield defense to the best conference fielding percentage, .993.</li>
+          <li>Head coach of the reserve team. Numerous players moved up to varsity, or on to D2 or NAIA programs.</li>
+          <li>Wrote regular analytical and scouting reports, including pitch data heat maps, pitch sequencing, scouting reports and defensive shift cards that greatly improved defensive efficiency.</li>
+        </ul></div></li>
+      <li><span class="when">Aug 2023 to May 2025</span><div><span class="role">Quantitative Reasoning Tutor</span><span class="note">Cornell College, Mt. Vernon, IA</span>
+        <ul>
+          <li>Tutored mathematics, economics and analytics courses, plus Excel, Tableau, Alteryx and SQL, for about 8 students per week.</li>
+          <li>Assisted on over 20 students' data visualization course projects during a professor's leave of absence.</li>
+        </ul></div></li>
+      <li><span class="when">May to Aug 2024</span><div><span class="role">Pitching Coach and Associate Head Coach</span><span class="note">Texarkana Rhinos, Texarkana, TX</span>
+        <ul>
+          <li>Led the pitching staff of a hybrid collegiate and professional summer team in the Mid-America League's inaugural season, running practices, drill work and arm care programs.</li>
+          <li>Individual awards: #4 in ERA, #3 in wins, #3 and #4 in saves, and Utility Player of the Year.</li>
+          <li>Recruited 13 of the 15 arms on staff. One has since signed a professional contract.</li>
+          <li>Headed bi-weekly film study sessions on pitching mechanics and opposing hitter scouting reports.</li>
+        </ul></div></li>
+      <li><span class="when">May to Aug 2023</span><div><span class="role">Baseball Intern</span><span class="note">Cornell College, Mt. Vernon, IA</span>
+        <ul>
+          <li>Analyzed the previous year's pitch data to find the sequences that best reduce opponents' hard-hit ball percentage.</li>
+          <li>Scouted players of the 2024 class.</li>
+          <li>Created practice plans and scripted bullpens to improve pitch tunneling and stamina.</li>
+        </ul></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><h2>Education</h2></div>
+    <ul class="teach">
+      <li><span class="when">Jul 2026 to Dec 2027</span><div><span class="role">Master of Science, Business Analytics</span><span class="note">Questrom School of Business, Boston University</span></div></li>
+      <li><span class="when">Aug 2021 to May 2025</span><div><span class="role">Bachelor of Arts, Business Analytics</span><span class="note">Cornell College</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><h2>Skills</h2></div>
+    <div class="skills">
+      <div class="skill"><h3>Analytics tools</h3><p>Excel modeling, Python, SQL, Tableau and Alteryx.</p></div>
+      <div class="skill"><h3>Methods</h3><p>Statistical analysis, optimization and simulation, data visualization, and scouting and pitch-data analysis.</p></div>
+      <div class="skill"><h3>Languages</h3><p>Chinese.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><h2>Contact</h2></div>
+    <div class="contact">
+      <dl>
+        <dt>Email</dt><dd>jcskoseylalonde@gmail.com</dd>
+        <dt>Location</dt><dd>Boston, Massachusetts</dd>
+        <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/julian-lalonde">linkedin.com/in/julian-lalonde</a></dd>
+      </dl>
+      <div class="callout">
+        <h3>Looking ahead</h3>
+        <p>Seeking opportunities in freight and transportation, specifically rail, in optimization and operations research analytics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="caption">Julian Skosey-LaLonde. Boston University Questrom School of Business.</span>
+    <a class="caption" href="#top">Back to top</a>
+  </div>
+</footer>
+<script>
+(function(){
+  var c=document.getElementById('net'); if(!c||!c.getContext) return;
+  var x=c.getContext('2d'), W=0, H=0, P=[], E=[], adj=[], trains=[], hi=null, hiT=0, last=0, raf=0, spawn=0;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var N=[[.03,.5],[.12,.25],[.12,.75],[.22,.5],[.22,.12],[.22,.88],[.34,.25],[.34,.75],[.44,.5],[.44,.1],[.44,.9],[.55,.25],[.55,.75],[.66,.5],[.66,.12],[.66,.88],[.77,.25],[.77,.75],[.87,.5],[.97,.5],[.97,.2],[.97,.8]];
+  var L=[[0,1],[0,2],[0,3],[1,3],[2,3],[1,4],[2,5],[3,6],[3,7],[4,6],[5,7],[6,8],[7,8],[6,9],[7,10],[4,9],[5,10],[9,11],[10,12],[8,11],[8,12],[11,13],[12,13],[11,14],[12,15],[9,14],[10,15],[13,16],[13,17],[14,16],[15,17],[16,18],[17,18],[18,19],[16,20],[17,21],[14,20],[15,21]];
+  var HUB=[3,8,13,18], TERM=[0,19,20,21];
+  function v(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+  function build(){
+    var r=c.getBoundingClientRect(), dpr=Math.min(window.devicePixelRatio||1,2), m=30;
+    W=r.width; H=r.height; c.width=W*dpr; c.height=H*dpr; x.setTransform(dpr,0,0,dpr,0,0);
+    P=N.map(function(p){return {x:m+(W-2*m)*p[0],y:H*(0.08+0.84*p[1])};});
+    E=[]; adj=P.map(function(){return [];}); trains=[]; hi=null;
+    L.forEach(function(l,i){
+      var A=P[l[0]], B=P[l[1]], dx=B.x-A.x, dy=B.y-A.y, h=Math.abs(dx)-Math.abs(dy), pts=[A];
+      if(h>0) pts.push({x:A.x+(dx<0?-h:h),y:A.y});
+      pts.push(B);
+      var cum=[0]; for(var k=1;k<pts.length;k++) cum.push(cum[k-1]+Math.hypot(pts[k].x-pts[k-1].x,pts[k].y-pts[k-1].y));
+      E.push({a:l[0],b:l[1],pts:pts,cum:cum,len:cum[cum.length-1]});
+      adj[l[0]].push({to:l[1],e:i,rev:false}); adj[l[1]].push({to:l[0],e:i,rev:true});
+    });
+  }
+  function route(s,t){
+    var n=P.length, dist=[], prev=[], done=[], i;
+    for(i=0;i<n;i++){dist[i]=1e9;prev[i]=null;done[i]=false;}
+    dist[s]=0;
+    for(var it=0;it<n;it++){
+      var u=-1; for(i=0;i<n;i++) if(!done[i]&&(u<0||dist[i]<dist[u])) u=i;
+      if(u<0||dist[u]>=1e9) break; done[u]=true;
+      adj[u].forEach(function(a){ var nd=dist[u]+E[a.e].len; if(nd<dist[a.to]){dist[a.to]=nd;prev[a.to]={from:u,e:a.e,rev:a.rev};} });
+    }
+    if(dist[t]>=1e9) return null;
+    var items=[], cur=t; while(cur!==s){var p=prev[cur]; items.unshift({e:p.e,rev:p.rev}); cur=p.from;}
+    return {s:s,t:t,items:items,total:dist[t]};
+  }
+  function rand(){
+    var best=null;
+    for(var k=0;k<40;k++){
+      var s=Math.floor(Math.random()*P.length), t=Math.floor(Math.random()*P.length); if(s===t) continue;
+      var r=route(s,t); if(!r) continue; best=r; if(r.total>W*0.5) return r;
+    }
+    return best;
+  }
+  function onEdge(e,l){
+    for(var k=1;k<e.pts.length;k++) if(l<=e.cum[k]||k===e.pts.length-1){
+      var f=(l-e.cum[k-1])/((e.cum[k]-e.cum[k-1])||1); f=Math.max(0,Math.min(1,f));
+      return {x:e.pts[k-1].x+(e.pts[k].x-e.pts[k-1].x)*f,y:e.pts[k-1].y+(e.pts[k].y-e.pts[k-1].y)*f};
+    }
+  }
+  function at(rt,d){
+    var acc=0;
+    for(var i=0;i<rt.items.length;i++){
+      var it=rt.items[i], e=E[it.e];
+      if(d<=acc+e.len||i===rt.items.length-1){ var l=Math.max(0,Math.min(e.len,d-acc)); return onEdge(e,it.rev?e.len-l:l); }
+      acc+=e.len;
+    }
+  }
+  function trace(e){ x.beginPath(); x.moveTo(e.pts[0].x,e.pts[0].y); for(var k=1;k<e.pts.length;k++) x.lineTo(e.pts[k].x,e.pts[k].y); x.stroke(); }
+  function draw(){
+    var hair=v('--hairline'), brand=v('--brand'), surf=v('--surface'), ink=v('--ink'), mut=v('--muted'), acc=v('--accent');
+    x.clearRect(0,0,W,H); x.lineCap='round'; x.lineJoin='round';
+    x.strokeStyle=hair; x.setLineDash([]); x.lineWidth=3; E.forEach(trace);
+    x.globalAlpha=0.7; x.lineWidth=9; x.lineCap='butt'; x.setLineDash([1.5,7]); E.forEach(trace); x.setLineDash([]); x.lineCap='round'; x.globalAlpha=1;
+    if(hi){
+      var a=Math.max(0,Math.min(1,hiT/0.6,(7-hiT)/0.8));
+      x.globalAlpha=a; x.strokeStyle=brand; x.lineWidth=4; hi.items.forEach(function(it){trace(E[it.e]);}); x.globalAlpha=1;
+    }
+    P.forEach(function(p,i){
+      var isHub=HUB.indexOf(i)>=0, isTerm=TERM.indexOf(i)>=0, isEnd=hi&&(i===hi.s||i===hi.t);
+      x.lineWidth=2; x.strokeStyle=isEnd?brand:(isHub?ink:mut); x.fillStyle=isTerm?acc:surf;
+      x.beginPath();
+      if(isTerm) x.rect(p.x-6,p.y-6,12,12); else x.arc(p.x,p.y,isHub?7:5,0,6.2832);
+      x.fill(); x.stroke();
+      if(isEnd){ x.fillStyle=brand; x.beginPath(); x.arc(p.x,p.y,3,0,6.2832); x.fill(); }
+    });
+    trains.forEach(function(t){
+      for(var k=0;k<4;k++){
+        var d=t.d-k*13; if(d<0||d>t.rt.total) continue;
+        var q=at(t.rt,d); if(!q) continue;
+        x.fillStyle=k===0?(t.red?brand:ink):(t.red?brand:mut); x.globalAlpha=k===0?1:0.75;
+        x.fillRect(q.x-4.5,q.y-4.5,9,9);
+      }
+      x.globalAlpha=1;
+    });
+  }
+  function step(ts){
+    var dt=Math.min((ts-last)/1000,0.05); last=ts; hiT+=dt;
+    if(!hi||hiT>7){ hi=rand(); hiT=0; }
+    spawn-=dt;
+    if(spawn<=0 && trains.length<16){ spawn=0.5+Math.random()*0.7; var red=hi&&Math.random()<0.5; var rt=red?hi:rand(); if(rt) trains.push({rt:rt,d:0,s:70+Math.random()*50,red:red}); }
+    trains.forEach(function(t){t.d+=dt*t.s;});
+    trains=trains.filter(function(t){return t.d-52<t.rt.total;});
+    draw(); raf=requestAnimationFrame(step);
+  }
+  function start(){
+    cancelAnimationFrame(raf); build();
+    if(reduce){ hi=rand(); hiT=3; for(var i=0;i<6;i++){var rt=rand(); if(rt) trains.push({rt:rt,d:rt.total*(0.2+0.12*i),s:0,red:i%2===0&&false}); } if(hi) trains.push({rt:hi,d:hi.total*0.5,s:0,red:true}); draw(); }
+    else { last=performance.now(); raf=requestAnimationFrame(step); }
+  }
+  var tm; window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(start,150);});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(){ if(reduce) draw(); });}catch(e){}
+  start();
+})();
+</script>
+</body>
+</html>
